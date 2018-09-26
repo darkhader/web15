@@ -1,46 +1,112 @@
 
-function generate(input, target) {
-    const map = [];
-    var output = -1;
-    var temp = input[0];
-    for (let i = 0; i < input.length; i++) {
+function generate(testLengthArray) {
+  var arrayOut = [];
 
-        if (input[i] == target)
-            output = i + 1;
+  if (testLengthArray.length < 4) {
+    for (var i = 0; i < testLengthArray.length; i++) {
+      var input = createInput(testLengthArray[i]);
+      var target = -5000 + Math.floor(Math.random() * 100000);
+      var output = search(input, target);
+      arrayOut.push({ "input": input, "target": target, "output": output });
+      //console.log(arrayOut[i]);
+
     }
-    for (let i = 0; i < input.length - 1; i++) {
-        for (let j = i + 1; j < input.length; j++) {
-            if (input[i] > input[j]) {
-                temp = input[j];
-                input[j] = input[i];
-                input[i] = temp;
-            }
-        }
-    }
-    for (let i = 0; i < input.length; i++) {
-        map[i] = input[i];
-    }
- if (map.length >= 4) {
-        if (output == -1) {
-            console.log("input doesn't contain target")
-        }
-        if (output == 1) {
-            console.log("target is at index 0")
-        }
-        if (output == map.length-1) {
-            console.log("target is at index input.length-1")
-        }
-        else if (output != 1 && output!= map.length-1) {
-            console.log("target` is NOT at index `0` or `input.length-1")
-        }
+  }
+  else {
+    var input = createInput(testLengthArray[0]);
+    var target = input[0] - 10000;
+    var output = search(input, target);
+    arrayOut.push({ "input": input, "target": target, "output": output });
+    // console.log(arrayOut[0]);
+
+    var input = createInput(testLengthArray[1]);
+    var target = input[0];
+    var output = search(input, target);
+    arrayOut.push({ "input": input, "target": target, "output": output });
+    // console.log(arrayOut[1]);
+    var input = createInput(testLengthArray[2]);
+    var target = input[input.length - 1];
+    var output = search(input, target);
+    arrayOut.push({ "input": input, "target": target, "output": output });
+    // console.log(arrayOut[2]);
+    var input = createInput(testLengthArray[3]);
+    var target = input[Math.floor((Math.random() * (testLengthArray[3] - 2)) + 1)];
+    var output = search(input, target);
+    arrayOut.push({ "input": input, "target": target, "output": output });
+    //console.log(arrayOut[3]);
+    for (var i = 4; i < testLengthArray.length; i++) {
+      var input = createInput(testLengthArray[i]);
+      var target = -5000 + Math.floor(Math.random() * 100000);
+      var output = search(input, target);
+      arrayOut.push({ "input": input, "target": target, "output": output });
+      // console.log(arrayOut[i]);
     }
 
+  }
 
-    return {
-        input: map,
-        target: target,
-        output: output
-    }
-   
 }
+
+function createInput(number) {
+  var input = [];
+  input[0] = -5000 + Math.floor(Math.random() * 10000);
+  for (var i = 1; i < number; i++) {
+    input[i] = input[i - 1] + Math.floor((Math.random() * 50) + 1);
+  }
+  return input;
+}
+
+
+
+
+function search(input, target) {
+  for (var i = 0; i < input.length; i++) {
+    if (input[i] == target)
+      return i;
+  }
+  return -1;
+}
+
+    
+    
+    
+    
+
+        
+            
+    
+    
+        
+            
+                
+                
+                
+            
+        
+    
+    
+        
+    
+ 
+        
+            
+        
+        
+            
+        
+        
+        
+
+        
+ 
+       
+  
+
+
+ 
+
+
+        
+
+   
+
 
