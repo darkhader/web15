@@ -15,6 +15,7 @@
 .Menu > span:hover{
     background: #9CD08F;
     color: #FFFFFF;
+    cursor: pointer;
 }
 .menu_vertical{
     background: #D5B0AC;
@@ -33,4 +34,5 @@
 .menu_vertical > span:hover{
     background: #9CD08F;
     color: #FFFFFF;
+    cursor: pointer;
 }
