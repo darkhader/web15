@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <title>Document</title>
 </head>
+
 <body>
     <nav>
         <ul>
@@ -15,12 +17,23 @@
         </ul>
     </nav>
     <div>
-        <h1 id="question">Ban co dz ko?</h1>
-        <button>Dung</button>
-        <button>Sai</button>
-        <button id="switch">Xem cau khac</button>
-        <button>Xem ket qua</button>
+        <h1 id="questionContent"></h1>
+        <button class='answer_btn' data-questionID='' data-answer='yes'>Dung</button>
+        <button class='answer_btn' data-questionID='' data-answer='no'>Sai</button>
+        <button id="switchquestion">Xem cau khac</button>
+        <button id="check">Xem ket qua</button>
+        <br>
+        <span id="yes"></span> <span> </span> <span id="no"></span>
+        
+
+
+
     </div>
-    <script src="/main1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <script src="/answer.js"></script>
+
 </body>
+
 </html>
