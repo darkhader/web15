@@ -1,11 +1,15 @@
-const maxLength = 200;
-$("#QuestionContent").on('input', function () {
-    
-    var remainChar = maxLength -$("#QuestionContent").val().length;
-    $("#remain").text(remainChar)
-});
+// const maxLength = 200;
+// const questionContentElem = document.getElementById('questionContent');
+// const remainCharElem = document.getElementById('remain');
 
-// $("#switch").click(function(){
-//     $.get("/getQuestion", function(data, status){
-//         document.getElementById("question").innerHTML = data;
-//     });
+// questionContentElem.addEventListener('input', function() {
+// 		var remainChar = maxLength - questionContentElem.value.length;
+// 		remainCharElem.innerText = remainChar;
+// });
+
+const maxLength = 200;
+
+$("#questionContent").on("input", function() {
+	var remainChar = maxLength - $("#questionContent").val().length;
+	$("#remain").text(remainChar);
+});

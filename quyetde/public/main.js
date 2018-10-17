@@ -1,20 +1,50 @@
-const maxLength = 200;
-const questionContent= document.getElementById("QuestionContent");
-const remainCharElem = document.getElementById("remain");
-const chymCharElem = document.getElementById("chym");
-questionContent.addEventListener('input', function () {
-    
-    var remainChar = maxLength - questionContent.value.length;
-    remainCharElem.innerText=remainChar;
-})
+// axios.get("http://localhost:3000/randomquestion")
+// .then(function (response) {
+//     if(response.data) {
+// 		document.getElementById("questionContent").innerText = response.data.questionContent;
+// 	}
+// })
+// .catch(function (error) {
+// 	console.log(error);
+// });
 
-function test(){
-    const fileDataSync =fs.readFileSync('randomQues.txt',{
-        encoding:'utf-8'
-     });
-     var dataObj = JSON.parse(fileDataSync);
-    
-     chymCharElem.innerText =11;
+function getRandomQuestion() {
+	$.ajax({
+		url: "http://localhost:3000/randomquestion",
+		type: "GET",
+		success: function(response) {
+			if(response) {
+				$("#questionContent").text(response.questionContent);
+				$(".answer_btn").data("questionid", response.id);
+				$("#viewDetail").attr("href", "/question/"+response.id);
+			}
+		},
+		error: function(err) {
+			console.log(err);
+		}
+	});
 }
 
-   
+getRandomQuestion();
+
+$("#otherQuestion").on("click", function() {
+	getRandomQuestion();
+});
+
+$(".answer_btn").on("click", function() {
+	let questionId = $(this).data("questionid");
+	$.ajax({
+		url: "http://localhost:3000/answer",
+		type: "POST",
+		data: $(this).data(),
+		success: function(response) {
+			if(response.success) {
+				window.location.href = "/question/"+questionId;
+			}
+		},
+		error: function(err) {
+			console.log(err);
+			window.location.href = "https://google.com/search?q=site:stackoverflow.com why my code didn't run";
+		}
+	})
+});
