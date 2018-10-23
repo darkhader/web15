@@ -15,8 +15,8 @@ function getRandomQuestion() {
 		success: function(response) {
 			if(response) {
 				$("#questionContent").text(response.questionContent);
-				$(".answer_btn").data("questionid", response.id);
-				$("#viewDetail").attr("href", "/question/"+response.id);
+				$(".answer_btn").data("questionid", response._id);
+				$("#viewDetail").attr("href", "/question/"+response._id);
 			}
 		},
 		error: function(err) {
@@ -32,14 +32,14 @@ $("#otherQuestion").on("click", function() {
 });
 
 $(".answer_btn").on("click", function() {
-	let questionId = $(this).data("questionid");
+	let questionid = $(this).data("questionid");
 	$.ajax({
 		url: "http://localhost:3000/answer",
 		type: "POST",
 		data: $(this).data(),
 		success: function(response) {
 			if(response.success) {
-				window.location.href = "/question/"+questionId;
+				window.location.href = "/question/"+questionid;
 			}
 		},
 		error: function(err) {

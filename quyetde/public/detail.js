@@ -8,14 +8,20 @@ $.ajax({
 		if(response && response.success) {
 			let question = response.question;
 			let totalVote = question.yes + question.no;
-			let voteYes = ((question.yes/totalVote)*100).toFixed(2);
 			let voteNo = ((question.no/totalVote)*100).toFixed(2);
+
+			let voteYes = ((question.yes/totalVote)*100).toFixed(2);
+			
 			
 			$('#questionContent').text(question.questionContent);
+
 			$('#totalVote span').text(totalVote);
 			$('#voteYes span').text(totalVote != 0 ? parseFloat(voteYes) : 0);
 			$('#voteNo span').text(totalVote != 0 ? parseFloat(voteNo) : 0);
-
+			document.getElementById("percentYes").style.width = voteYes+"%";
+			document.getElementById("percentNo").style.width = voteNo +"%";
+			
+			console.log("vl", voteYes)
 			// if(totalVote != 0) {
 			// 	return parseFloat(voteYes);
 			// } else {

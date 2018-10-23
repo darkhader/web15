@@ -7,11 +7,11 @@ const QuestionModel = require('./models/questionModel')
 
 
 mongoose.connect("mongodb://localhost/quyetde", (err) => {
-if(err) console.log(err)
+	if (err) console.log("err")
 
- } );
+});
 
- 
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
@@ -27,67 +27,70 @@ app.get('/answer', (req, res) => {
 });
 
 app.post('/createquestion', (req, res) => {
-	// let questionList = JSON.parse(fs.readFileSync('./questions.json'));
 
-	// const newQuestion = new QuestionModel({
-	// 	questionContent: req.body.questionContent,
-		
-	// });
-	// newQuestion.save();
 
-	QuestionModel.create( {
-		questionContent: req.body.questionContent}, (err, questionCreate) =>{
-			if(err) console.log(err)
-			else res.redirect('/question/'+questionCreate._id);
-		}
+	QuestionModel.create({
+		questionContent: req.body.questionContent
+	}, (err, questionCreate) => {
+		if (err) console.log(err)
+		else res.redirect('/question/' + questionCreate._id);
+	}
 	)
-	
 
-	// questionList.push(newQuestion);
 
-	// fs.writeFileSync('./questions.json', JSON.stringify(questionList));
-
-	
 });
 
 app.get('/randomquestion', (req, res) => {
-	//findOne
-	// let questionList = JSON.parse(fs.readFileSync('./questions.json'));
+	QuestionModel.count({}, (err, count) => {
+		let randomIndex = Math.floor(Math.random() * count);
+		QuestionModel.findOne({}, null, { skip: randomIndex }, (err, questionFound) => {
+			if (err) console.log(err)
+			else res.send(questionFound);
+		})
+	})
 
-	// if(questionList.length > 0) {
-	// 	let randomIndex = Math.floor(Math.random()*questionList.length);
-	// 	let questionRandom = questionList[randomIndex];
-	// 	question = questionRandom;
-	// 	res.send(questionRandom);
-	// }
+})
 
-});
+
 
 app.post('/answer', (req, res) => {
-	//find AndUpdate
-	//find => save
-	const { questionid, answer } = req.body;
-	// const questionid = req.body.questionid;
-	// const answer = req.body.answer;
-	let questionList = JSON.parse(fs.readFileSync('./questions.json'));
-	questionList[questionid][answer] += 1;
-	fs.writeFileSync('./questions.json', JSON.stringify(questionList));
-	res.send({ success: 1 });
+
+	const { answer, questionid } = req.body;
+	console.log(questionid)
+	QuestionModel.findById(questionid, (err, questionFound) => {
+		if (err) console.log(err)
+		else if (!questionFound) console.log('not found1')
+		else {
+			questionFound[answer] += 1;
+			questionFound.save((err) => {
+				if (err) console.log(err)
+				else res.send({ success: 1 });
+			});
+		}
+	});
 });
 
 app.get('/question/:questionId', (req, res) => {
 	res.sendFile(__dirname + "/public/detail.html");
 });
 
-app.get('/questiondetail/:questionId', (req, res) => {
-	let questionId = req.params.questionId;
-	let questionList = JSON.parse(fs.readFileSync('./questions.json'));
-	res.send({ success: 1, question: questionList[questionId] });
+app.get('/questiondetail/:questionid', (req, res) => {
+
+	const { questionid } = req.params;
+	
+	QuestionModel.findById(questionid, (err, questionFound) => {
+		if (err) console.log(err)
+		else if (!questionFound) console.log('not found')
+		else res.send({ success: 1, question: questionFound });
+	});
+
+
+
 });
 
 app.use(express.static('public'));
 
 app.listen(3000, (err) => {
-	if(err) console.log(err)
+	if (err) console.log(err)
 	else console.log('Server is listening at port 3000');
 });
