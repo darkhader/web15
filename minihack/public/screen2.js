@@ -12,7 +12,27 @@ $.ajax({
             $("#player2").text(result.playerName2);
             $("#player3").text(result.playerName3);
             $("#player4").text(result.playerName4);
-console.log("r",result-row)
+            for (i = 0; i < result.rounds.length; i++) {
+                var oldRound =
+                `<tr>
+                <th scope="col">Round ${i}</th>
+                <th scope="col" id="player1">
+                <input data-row="${result.rounds.length}" data-column="0" type="number" class="form-control" value=0>
+                </th>
+                <th scope="col" id="player2">
+                <input data-row="${result.rounds.length}" data-column="1" type="number" class="form-control" value=0>
+                </th>
+                <th scope="col" id="player3">
+                <input data-row="${result.rounds.length}" data-column="2" type="number" class="form-control" value=0>
+                </th>
+                <th scope="col" id="player4">
+                <input data-row="${result.rounds.length}" data-column="3" type="number" class="form-control" value=0>
+                </th>
+            </tr>`
+    
+            $("#rounds").append(oldRound);
+
+            }
             addRound(result);
         }
     },
@@ -40,14 +60,14 @@ function tinhToan() {
                 $("#player2Score").text(diem2);
                 $("#player3Score").text(diem3);
                 $("#player4Score").text(diem4);
-                
+           
             }
         },
         error: function () {
             console.log(error);
         }
     })
-    
+
 }
 
 
