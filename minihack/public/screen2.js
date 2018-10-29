@@ -40,6 +40,23 @@ const gameId = params[params.length - 1];
 //         console.log(error);
 //     }
 // })
+ $.ajax({
+    url: "/gameDetail/" + gameId,
+    type: "GET",
+    success: function (result) {
+        if (result) {
+            $("#player1").text(result.playerName1);
+            $("#player2").text(result.playerName2);
+            $("#player3").text(result.playerName3);
+            $("#player4").text(result.playerName4);
+            tinhToan();
+            addRound(result);
+        }
+    },
+    error: function () {
+        console.log(error);
+    }
+})
 function tinhToan() {
     $.ajax({
         url: "/gameDetail/" + gameId,
