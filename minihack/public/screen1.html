@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bốc Bát Họ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./screen1.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <h1 class=" my-0">Score Keeper</h1>
+        <hr class=" my-0 ">
+        <form action="/createPlayer" method="POST" id="form">
+            <div class="form-group  mt-5">
+                   
+                <input type="text" class="form-control mt-2 " placeholder="Player 1" id="playerName1" name="playerName1">
+                <input type="text" class="form-control mt-2 " placeholder="Player 2" id="playerName2" name="playerName2">
+                <input type="text" class="form-control mt-2 " placeholder="Player 3" id="playerName3" name="playerName3">
+                <input type="text" class="form-control mt-2 " placeholder="Player 4" id="playerName4" name="playerName4">
+                <div class="d-flex justify-content-center ">
+                    <button type="submit" class="btn my-2">CREATE NEW GAME</button>
+                </div>
+            </div>
+        </form>
+
+
+
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script src="/screen1.js"></script>
+</html>
