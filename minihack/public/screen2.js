@@ -3,43 +3,43 @@ const gameId = params[params.length - 1];
 
 
 
-$.ajax({
-    url: "/gameDetail/" + gameId,
-    type: "GET",
-    success: function (result) {
-        if (result) {
-            $("#player1").text(result.playerName1);
-            $("#player2").text(result.playerName2);
-            $("#player3").text(result.playerName3);
-            $("#player4").text(result.playerName4);
-            for (i = 0; i < result.rounds.length; i++) {
-                var oldRound =
-                `<tr>
-                <th scope="col">Round ${i}</th>
-                <th scope="col" id="player1">
-                <input data-row="${result.rounds.length}" data-column="0" type="number" class="form-control" value=0>
-                </th>
-                <th scope="col" id="player2">
-                <input data-row="${result.rounds.length}" data-column="1" type="number" class="form-control" value=0>
-                </th>
-                <th scope="col" id="player3">
-                <input data-row="${result.rounds.length}" data-column="2" type="number" class="form-control" value=0>
-                </th>
-                <th scope="col" id="player4">
-                <input data-row="${result.rounds.length}" data-column="3" type="number" class="form-control" value=0>
-                </th>
-            </tr>`
+// $.ajax({
+//     url: "/gameDetail/" + gameId,
+//     type: "GET",
+//     success: function (result) {
+//         if (result) {
+//             $("#player1").text(result.playerName1);
+//             $("#player2").text(result.playerName2);
+//             $("#player3").text(result.playerName3);
+//             $("#player4").text(result.playerName4);
+//             for (i = 0; i < result.rounds.length; i++) {
+//                 var oldRound =
+//                 `<tr>
+//                 <th scope="col">Round ${i}</th>
+//                 <th scope="col" id="player1">
+//                 <input data-row="${result.rounds.length}" data-column="0" type="number" class="form-control" value=0>
+//                 </th>
+//                 <th scope="col" id="player2">
+//                 <input data-row="${result.rounds.length}" data-column="1" type="number" class="form-control" value=0>
+//                 </th>
+//                 <th scope="col" id="player3">
+//                 <input data-row="${result.rounds.length}" data-column="2" type="number" class="form-control" value=0>
+//                 </th>
+//                 <th scope="col" id="player4">
+//                 <input data-row="${result.rounds.length}" data-column="3" type="number" class="form-control" value=0>
+//                 </th>
+//             </tr>`
     
-            $("#rounds").append(oldRound);
+//             $("#rounds").append(oldRound);
 
-            }
-            addRound(result);
-        }
-    },
-    error: function () {
-        console.log(error);
-    }
-})
+//             }
+//             addRound(result);
+//         }
+//     },
+//     error: function () {
+//         console.log(error);
+//     }
+// })
 function tinhToan() {
     $.ajax({
         url: "/gameDetail/" + gameId,
