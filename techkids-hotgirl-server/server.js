@@ -1,32 +1,31 @@
-const express = require("express");;
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://127.0.0.1/tk-hotgirl", { useCreateIndex: true, useNewUrlParser: true }, (err) => {
-    if(err){
-        console.log(err);
-    } else{
-        console.log("Connected");
-    }
-});
+mongoose.connect("mongodb://localhost/techkids-hotgirl")
 
-const userRouter = require("./routers/userRouters");
-const imageRouter = require("./routers/imageRouters");
-const commentRouter = require("./routers/commentRouters");
+const userRouter = require('./routers/userRouter');
+const imageRouter = require('./routers/imageRouter');
 
 const app = express();
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
+app.get("/api", (req, res) => {
+	res.send("Api router");
+});
+//api/images
 app.use("/api/users", userRouter);
 app.use("/api/images", imageRouter);
-app.use("/api/comments", commentRouter);
 
-const port = 8888;
+// Middleware
+app.use((req, res, next) => {
+	console.log("404");
+	res.send("404");
+});
+
+const port = 6969;
 app.listen(port, (err) => {
-    if(err){
-        console.log(err);
-    } else{
-        console.log("Server is listening at port " + port);
-    }
-})
+	if(err) console.log(err)
+	else console.log("Listen at port " + port);
+});
