@@ -12,6 +12,8 @@ class MainContent extends Component {
           <th scope="col">{index+1}</th>
           <th scope="col" >{citizen.name}</th>
           <th scope="col" >{citizen.cmt}</th>
+          <th scope="col" >{citizen.sex}</th>
+          <th scope="col" >{citizen.sđt}</th>
           <th scope="col">{citizen.dob}</th>
           <th scope="col" >{citizen.address}</th>
           <th scope="col">{citizen.job}</th>
@@ -29,6 +31,8 @@ class MainContent extends Component {
               <th scope="col">STT</th>
               <th scope="col">Họ và Tên</th>
               <th scope="col">Chứng Minh Thư</th>
+              <th scope="col">Giới tính</th>
+              <th scope="col">Số Điện Thoại</th>
               <th scope="col">Ngày Sinh</th>
               <th scope="col">Địa Chỉ</th>
               <th scope="col">Nghề Nghiệp</th>

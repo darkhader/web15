@@ -39,10 +39,10 @@ CitizenRouter.use((req, res, next) => {
 })
 CitizenRouter.post("/", async (req, res) => {
 	
-	const { name, cmt, dob, address, job } = req.body;
+	const { name, cmt,sex,sđt, dob, address, job } = req.body;
 
 	try {
-		const citizenCreated = await CitizenModel.create({ name, cmt, dob, address, job });
+		const citizenCreated = await CitizenModel.create({ name, cmt,sex,sđt, dob, address, job });
 		res.status(201).json({ success: 1, citizen: citizenCreated, citizenId:citizenCreated._id  });
 	} catch (error) {
 		res.status(500).json({ success: 0, message: error })
@@ -63,23 +63,31 @@ CitizenRouter.get("/", async (req, res) => {
 // "/api/users" => get all
 CitizenRouter.put("/:id", async (req, res) => {
 	const citizenId = req.params.id;
-	const { name, dob, address, job } = req.body;
+	const { name,sex,sđt, dob, address, job } = req.body;
 
 	try {
 		const citizenFound = await CitizenModel.findById(citizenId);
+		console.log(citizenFound);
+		
 		if (!citizenFound) {
 			res.status(404).json({ success: 0, message: "Not found!" });
 		} else {
-			for (key in { name, dob, address, job }) {
+			for (key in { name, dob,sex,sđt, address, job }) {
 				
-				if (citizenFound[key] && req.body[key]) citizenFound[key] = req.body[key];
+				if (citizenFound[key] && req.body[key]){citizenFound[key] = req.body[key];}
+				if (!citizenFound[key] && req.body[key]){citizenFound[key] = req.body[key];}
+				
+					   
+				   
+			   }
 						
 					
-				}
+				
+				
 				
 			
 			let citizenUpdated = await citizenFound.save();
-			res.json({ success: 1, user: citizenUpdated });
+			res.json({ success: 1, citizen: citizenUpdated });
 		}
 	} catch (error) {
 		res.status(500).json({ success: 0, message: error })

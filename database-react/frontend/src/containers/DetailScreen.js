@@ -89,7 +89,8 @@ class DetailScreen extends Component {
   
           const newChangeCitizen = {
             name: this.state.name,
-            password: this.state.password,
+            sex: this.state.sex,
+            sđt: this.state.sđt,
             dob: this.state.dob,
             address: this.state.address,
             job: this.state.job
@@ -134,6 +135,8 @@ class DetailScreen extends Component {
                 <th scope="col"></th>
                 <th scope="col">Họ và Tên</th>
                 <th scope="col">Chứng Minh Thư</th>
+                <th scope="col">Giới tính</th>
+                <th scope="col">Số Điện Thoại</th>
                 <th scope="col">Ngày Sinh</th>
                 <th scope="col">Địa Chỉ</th>
                 <th scope="col">Nghề Nghiệp</th>
@@ -147,6 +150,8 @@ class DetailScreen extends Component {
                     <th scope="col"></th>
                     <th scope="col" >{this.state.citizen.citizen.name}</th>
                     <th scope="col" >{this.state.citizen.citizen.cmt}</th>
+                    <th scope="col" >{this.state.citizen.citizen.sex}</th>
+                    <th scope="col" >{this.state.citizen.citizen.sđt}</th>
                     <th scope="col">{this.state.citizen.citizen.dob}</th>
                     <th scope="col" >{this.state.citizen.citizen.address}</th>
                     <th scope="col">{this.state.citizen.citizen.job}</th>
@@ -168,6 +173,22 @@ class DetailScreen extends Component {
 
                     name="cmt"
                     placeholder="Chứng Minh Thư"
+                    onChange={this.handleInputChange}
+                  />
+                </th>
+                <th scope="col">
+                  <Input
+
+                    name="sex"
+                    placeholder="Giới Tính"
+                    onChange={this.handleInputChange}
+                  />
+                </th>
+                <th scope="col">
+                  <Input
+
+                    name="sđt"
+                    placeholder="Số Điện Thoại"
                     onChange={this.handleInputChange}
                   />
                 </th>

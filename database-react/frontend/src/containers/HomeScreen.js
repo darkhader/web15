@@ -75,6 +75,8 @@ class HomeScreen extends Component {
           citizen.cmt.includes(this.state.searchString) ||
           citizen.dob.includes(this.state.searchString) ||
           citizen.job.includes(this.state.searchString) ||
+          citizen.sex.includes(this.state.searchString) ||
+          citizen.sđt.includes(this.state.searchString) ||
           citizen.address.includes(this.state.searchString)
       );
 
@@ -102,6 +104,8 @@ class HomeScreen extends Component {
                   <th scope="col"></th>
                   <th scope="col">Họ và Tên</th>
                   <th scope="col">Chứng Minh Thư</th>
+                  <th scope="col">Giới tính</th>
+                  <th scope="col">Số Điện Thoại</th>
                   <th scope="col">Ngày Sinh</th>
                   <th scope="col">Địa Chỉ</th>
                   <th scope="col">Nghề Nghiệp</th>
@@ -113,6 +117,8 @@ class HomeScreen extends Component {
                   <th scope="col"></th>
                   <th scope="col" >{this.state.citizen1.name}</th>
                   <th scope="col" >{this.state.citizen1.cmt}</th>
+                  <th scope="col" >{this.state.citizen1.sex}</th>
+                  <th scope="col" >{this.state.citizen1.sđt}</th>
                   <th scope="col">{this.state.citizen1.dob}</th>
                   <th scope="col" >{this.state.citizen1.address}</th>
                   <th scope="col">{this.state.citizen1.job}</th>

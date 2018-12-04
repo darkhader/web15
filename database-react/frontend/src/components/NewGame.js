@@ -11,7 +11,8 @@ export default class NewGame extends Component {
 		this.state = {
 			name: '',
 			cmt: '',
-			password: '',
+			sex: '',
+			sđt: '',
 			dob: '',
 			address: '',
 			job: ''
@@ -29,7 +30,8 @@ export default class NewGame extends Component {
 			// ["player1", "player2", "player3", "player4"]
 			name: this.state.name,
 			cmt: this.state.cmt,
-			password: this.state.password,
+			sex: this.state.sex,
+			sđt: this.state.sđt,
 			dob: this.state.dob,
 			address: this.state.address,
 			job: this.state.job
@@ -81,6 +83,20 @@ export default class NewGame extends Component {
 					<Input
 						name="cmt"
 						placeholder="Chứng Minh Thư"
+						onChange={this.handleInputChange}
+					/>
+				</FormGroup>
+				<FormGroup>
+					<Input
+						name="sex"
+						placeholder="Giới Tính"
+						onChange={this.handleInputChange}
+					/>
+				</FormGroup>
+				<FormGroup>
+					<Input
+						name="sđt"
+						placeholder="Số Điện Thoại"
 						onChange={this.handleInputChange}
 					/>
 				</FormGroup>
